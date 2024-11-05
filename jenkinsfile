@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Build the Docker image locally
+                    sh 'docker build -t kubernetes-demo .'
+                }
+            }
+        }
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    // Apply Kubernetes deployment using kubectl
+                    sh 'kubectl apply -f kubernetes-deployment.yaml'
+                }
+            }
+        }
+    }
+}
+

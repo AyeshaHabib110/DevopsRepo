@@ -1,21 +1,19 @@
-# Use an official Node.js runtime as a base image
+# Use Node.js base image
 FROM node:14
 
-# Set the working directory
-WORKDIR /usr/src/app
+# Set working directory
+WORKDIR /app
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
-
-# Install dependencies
+# Copy package.json and install dependencies
+COPY Projectdemo/package*.json ./
 RUN npm install
 
-# Copy the rest of your application
-COPY . .
+# Copy application files
+COPY Projectdemo .
 
 # Expose the port the app runs on
 EXPOSE 3000
 
-# Command to start the application
-CMD ["npm", "start"]
+# Run the application
+CMD ["node", "app.js"]
 
